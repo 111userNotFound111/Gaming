@@ -37,8 +37,8 @@ def isValidSudoku(board):
             if cur_val == ".":
                 continue
             if  (cur_val in row_dict[i] or 
-                 cur_val in col_dict[j] or 
-                 cur_val in square[(i//3,j//3)]): # use floor division as hash function
+                cur_val in col_dict[j] or 
+                cur_val in square[(i//3,j//3)]): # use floor division as hash function
                 return False
             else:
                 row_dict[i].add(cur_val)

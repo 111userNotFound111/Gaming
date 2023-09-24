@@ -1,5 +1,7 @@
 
 def threeSum(nums):
+    
+        # two pointer questions generally requires the list to be sorted first 
         nums.sort()
         result = []
         for index, num in enumerate(nums):
