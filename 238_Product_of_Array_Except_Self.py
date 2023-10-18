@@ -11,7 +11,6 @@ and without using the division operation.
 
 """
 
-from collections import defaultdict
 
 def productExceptSelf(nums):
     # product = prefix product * surfix product

@@ -24,6 +24,7 @@ def topKFrequentHash(nums,k):
     count={}
     # initialize bucket for bucket sort 
     freq=[[] for i in range(len(nums)+1)]
+    print(freq)
     # initialize list to store result
     res=[]
 

@@ -27,7 +27,6 @@ def recursiveFind(num_set,cur_num,seq_length):
     else:
         return recursiveFind(num_set, next_num, new_seq_length)
 
-   
 
 def longestConsecutive(nums):
     longest_length=0
