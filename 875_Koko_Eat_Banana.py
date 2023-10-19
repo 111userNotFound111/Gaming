@@ -35,46 +35,42 @@ def minEatingSpeed(piles, h):
     # step 1 : initialize left and right pointer 
     left = 1
     right = max(piles)
-    answer_list = []
+    answer = max(piles)
     
     while True:
         # step 2: calculate k value 
         k = left + ((right - left) // 2)
-
-        #print(k)
         
         # step 3: check if k value satisfy the requirement
         # calculate the number of hours required to finish the piles with k bites
         total_hours = 0 
         for bananas in piles:
             total_hours= total_hours + math.ceil(bananas / k)
-
+        
         #print(total_hours)
         # if total hour spend > h
         # increase k to reduce hour spend
         if total_hours > h:
             left = k+1
 
-        # if total hour spend < h
+        # if total hour spend <= h
         # decrease k to minimize k value
-        elif total_hours < h:
-            answer_list.append(k)
+        elif total_hours <= h:
+            # update answer if k is smaller than current answer
+            if k < answer:
+                answer = k
             right = k-1
         
-        # if total hour equals to h
-        # return the answer 
-        else:
-            return k
-        
         # step 4: stop case 
-        # when left >= right : searched to the end of the list
-        if left >= right:
-            answer_list.append(left)
-            #print(k,left,right)
-            return answer_list[-1]
+        # when left > right : searched to the end of the list (include the very last one)
+        if left > right:
+            print(k,left,right)
+            break
+        
+    return answer
     
 
 if __name__ == "__main__":
-    piles = [30,11,23,4,20]
-    h = 6
+    piles = [1,1,1,999999999]
+    h = 10
     print(minEatingSpeed(piles, h))
