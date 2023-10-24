@@ -44,7 +44,7 @@ def search(nums, target):
     while left <= right:
         # calculate mid 
         mid = (left + right) // 2 
-        # first locate which region target is in 
+        # locate which region target is in 
         # if target in left region
         if target > nums[right]:
             # if mid in the same left region
@@ -71,12 +71,10 @@ def search(nums, target):
             # different region
             else:
                 left = mid + 1
-        
-        print(mid)
 
         # stop case 
         if nums[mid] == target:
-            return True
+            return mid
     
     return -1 
 
