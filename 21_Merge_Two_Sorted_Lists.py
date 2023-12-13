@@ -29,36 +29,43 @@ Both list1 and list2 are sorted in non-decreasing order.
 """
 
 # create linked list node struct
-class Node : 
+class ListNode : 
     def __init__(self,data, next=None):
         self.data = data
         self.next = next
-    
-# create linked list struct
-class LinkedList : 
-    # initialise head 
-    def __init__(self):
-        self.head = None
 
-    def insert(self,data):
-        newNode = Node(data)
-        if self.head :
-            curr = self.head
-            while (curr.next):
-                curr = curr.next
-            curr.next = newNode
+# list1 : listNode 1
+# list2 : listNode 2
+def mergeTwoLists(list1, list2):
+    # create a dummy node 
+    # (create a dummy head and check if node exists)
+    dummy = ListNode()
+    tail = dummy
+
+    # for case where at position p both listNode1 and listNode2 exists
+    while list1 and list2:
+        # compare node1 and node2
+        # if node1 smaller than node2, insert node1 to new linkedlist 
+        # move to next node in list1
+        if list1.data < list2.data:
+            tail.next = list1
+            list1 = list1.next
+        # if node2 is smaller, insert node2 to new linkedlist
+        # move to next node in list2
         else:
-            self.head = newNode
-        
-    def printLinkedList(self):
-        if self.head:
-            curr = self.head
-            while(curr):
-                print(curr.data)
-                curr = curr.next
-            print("End")
-                
+            tail.next = list2
+            list2 = list2.next
+
+        # move to the new tail node 
+        tail = tail.next
+
+    # if list1 and 2 are not equal length
+    if list1:
+        tail.next = list1
+    elif list2:
+        tail.next = list2
+    
+    return dummy.next
+
 if __name__ == "__main__":
-    LL = LinkedList()
-    LL.insert(1)
-    LL.printLinkedList()
+    print()

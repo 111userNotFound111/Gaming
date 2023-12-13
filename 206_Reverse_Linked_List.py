@@ -38,8 +38,8 @@ class LinkedList:
     def __init__(self):
         self.head = None
     # insert node to linked list 
-    def insert(self, data):
-        newNode = Node(data)
+    def insert(self, val):
+        newNode = Node(val)
         if(self.head):
             current = self.head
             while(current.next):
@@ -60,8 +60,9 @@ class LinkedList:
 # 2. construct two new variables:
     # prev : store the address of the previous node 
     # curr : store the address of the next node
-# 3. use dummy to store reference of current.next 
-# 4. move to next node by accessing dummy variable
+# 3. change next to prev reference 
+# 4. use dummy to store reference of the actual current.next 
+# 5. move to next node by accessing dummy variable
     def reverseList(self):
         head = self.head
         prev, curr = None, head
@@ -71,6 +72,7 @@ class LinkedList:
             curr.next = prev
             prev = curr
             curr = temp
+        # set head as the last pre value (last value)
         self.head = prev
         return
 

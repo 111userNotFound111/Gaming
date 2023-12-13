@@ -34,10 +34,10 @@ class LinkedList:
                 print(current.val)
                 current = current.next
         else:
-            print("Empty Linked List")
+            print("Empty Linked List !")
 
 LL = LinkedList()
-# LL.insert(3)
-# LL.insert(4)
-# LL.insert(5)
+LL.insert(3)
+LL.insert(4)
+LL.insert(5)
 LL.printLL()
