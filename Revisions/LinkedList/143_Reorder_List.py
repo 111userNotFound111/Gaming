@@ -60,38 +60,37 @@ def Convert_List_To_Linked_List(input_list):
     return linked_list
 
 def reorderList(head):
-    if head:
-        slow = head
-        fast = head.next
 
-        if fast and fast.next:
-            slow = slow.next
-            fast = fast.next.next
+    slow = head
+    fast = head.next
 
-        # reverse the entire list
-        second = slow.next
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
 
-        # break the orignal linked list from slow pointer (middle)
-        prev = None
-        slow.next = None
+    # reverse the entire list
+    second = slow.next
 
-        while second:
-            pointer_to_next = second.next
-            second.next = prev
-            prev = second
-            second = pointer_to_next
-        
-        # merge both first and asecond linked list 
-        first, second = head, prev
+    # break the orignal linked list from slow pointer (middle)
+    prev = None
+    slow.next = None
 
-        while second:
-            temp1 , temp2 = first.next, second.next
-            first.next = second
-            second.next = temp1
-            first = temp1
-            second = temp2
-        
-            
+    while second:
+        pointer_to_next = second.next
+        second.next = prev
+        prev = second
+        second = pointer_to_next
+    
+    # merge both first and second linked list  
+    first = head
+    second = prev
+    
+    while second:
+        temp1 , temp2 = first.next, second.next
+        first.next = second
+        second.next = temp1
+        first = temp1
+        second = temp2
 
 
 
@@ -101,6 +100,7 @@ if __name__ == "__main__":
     reordered_list = LinkedList()
     reordered_list.head = linked_list.head
     reordered_list = reorderList(reordered_list.head)
+    print(reordered_list.next.next.next.val)
 
 
 
