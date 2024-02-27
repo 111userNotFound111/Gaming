@@ -5,7 +5,8 @@ def threeSum(nums):
         nums.sort()
         result = []
         for index, num in enumerate(nums):
-            if index != 0 and num == nums[index - 1]:
+            print(index)
+            if index != 0 and num == nums[index - 1]: # if the current value is the same as previous value in the array
                 continue
             
             left = index + 1 
@@ -24,3 +25,7 @@ def threeSum(nums):
                     while nums[left] == nums[left -1] and left < right:
                         left += 1
         return result
+    
+if __name__ == "__main__":
+    nums = [1,2,3,4,5]
+    threeSum(nums)
