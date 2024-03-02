@@ -16,8 +16,6 @@ def threeSum(nums):
         right = len(nums) - 1 
         
         while left < right:
-            print(left)
-            print(right)
             sum = num + nums[left] + nums[right]
             if sum < 0 :
                 left = left + 1 
