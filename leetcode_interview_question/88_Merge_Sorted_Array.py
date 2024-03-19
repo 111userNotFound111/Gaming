@@ -1,5 +1,5 @@
 """
-You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.
+You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, represent the number of elements in nums1 and nums2 respectively.
 
 Merge nums1 and nums2 into a single array sorted in non-decreasing order.
 
@@ -38,17 +38,27 @@ nums2.length == n
 
 """
 
-def merge(num1, m, num2, n):
-    res = num1
-    L = num1[:m]
-    R = num2
+def merge(nums1, m, nums2, n):
+    L = nums1[:m]
+    R = nums2
     
     i = j = k = 0
     
-    while k < len(num1):
+    while i < len(L) and j <len(R):
         if L[i] < R[j]:
-            res[k] = L[i]
+            nums1[k] = L[i]
             i += 1
         else:
-            res[k] = R[j]
-            
+            nums1[k] = R[j]
+            j += 1
+        k += 1
+        
+    while i < m:
+        nums1[k] = L[i]
+        i += 1
+        k += 1
+        
+    while j < n:
+        nums1[k] = R[j]
+        j += 1
+        k += 1
