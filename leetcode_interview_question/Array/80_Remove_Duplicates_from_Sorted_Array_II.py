@@ -45,7 +45,7 @@ Constraints:
 nums is sorted in non-decreasing order.
 
 """
-
+# the array is  in ascending order
 def removeDuplicates(nums):
     freq = 1
     index = 1
@@ -53,10 +53,12 @@ def removeDuplicates(nums):
         if i > 0:
             # if two adjacent nums are the same
             if num == nums[i-1]:
+                # check frequency 
                 if freq < 2:
                     nums[index] = num
                     index += 1
                     freq += 1
+                # if frequency more than 2, skip 
                 else:
                     continue
             # if two adjacent nums are different

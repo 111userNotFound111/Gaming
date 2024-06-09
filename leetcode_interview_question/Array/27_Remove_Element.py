@@ -117,27 +117,30 @@ Constraints:
 #     return count, nums
 
 
+# use two pointer method to reduce the time complexity 
 def removeElement(nums:list,val):
     res = []
     left = 0
     right = len(nums)-1
-    
+    # recursive condition
+    # for two pointers, if the num in nums is not val, add to res
     while left < right:
         if nums[left] != val:
             res.append(nums[left])
         if nums[right] != val:
             res.append(nums[right])
+        # update pointers
         left+=1
         right-=1
-    
+    # the left and right pointer can cause duplicate values appended to res
+    # use special case
     if left == right:
         if nums[left] != val:
             res.append(nums[left])
-    
-    for i in range (0, len(res)):
-        nums[i] = res[i]
+    # 
+    nums[:] = res
         
-    return len(res)
+    return len(res), nums
 
 if __name__ == "__main__":
     nums = [2,2,2]
