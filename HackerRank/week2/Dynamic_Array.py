@@ -33,9 +33,9 @@ def type_two(input_array_2d, input_answ_list, last_answer, n, x, y):
 def dynamicArray(n, queries):
     # the ans_list array is required by the question 
     ans_list = []
-    array_2d = [ [] for i in range(n) ]
+    array_2d = [ [] for i in range(n) ] # creating list of array with given value 
     lastAns = 0
-    # queries is a list of lists that contains query in the form of list
+    # queries is a list of lists that contains query in the form of array
     for query in queries:
         # first value of each query indicates the query type
         if int(query[0]) == 1:
