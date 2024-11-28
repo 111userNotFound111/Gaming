@@ -1,46 +1,69 @@
 # divide and conquer 
-# part 1: Mapping all elements in array 
-# part 2: reduce all mapped elements (sort and arrange)
+# break down the code into smallest elements using recursion 
+# based case : if len(arr) == 1
+# merge sort do not use extra space, in place array sorting (require pointer k)
+# 1. break down array into smallest component of 1 element in each sub array (divide)
+# 2. compare the left and right sub array for ordering (conquer)
+# 3. in place array sorting based on the item value comparison 
+
+
 def merge_sort(input_array):
     print(f'the current dividing array {input_array}')
-    # part 1: sort the numbers 
-    if len(input_array) > 1:
-        mid = len(input_array) // 2
-        # divide into two parts
-        L = input_array[:mid]
-        R = input_array[mid:]
-        # this divides array into single number
-        merge_sort(L)
-        merge_sort(R)
-
-
-        # part 2 : after mapping the element, start sorting on input array
-        # i : pointer for L array   j:pointer for R array   k: pointer for sorted_array
-        i = j = k = 0
-        # sort L and R and store output in sorted_array
-        while i < len(L) and j < len(R):
-            if L[i] < R[j]:
-                input_array[k] = L[i]
-                i += 1
-            else:
-                input_array[k] = R[j]
-                j += 1
-            k += 1
-        # check if there are left elements 
-        while i < len(L):
-            input_array[k] = L[i]
-            i += 1
-            k += 1
-
-        while j < len(R):
-            input_array[k] = R[j]
-            j += 1
-            k += 1
     
-    print(input_array)
+    # based check 
+    # if the array has been breaked down into the smallest element 
+    if len(input_array) <= 1:
+        return input_array
+
+    # define start and end pointer 
+    start = 0
+    end = len(input_array)
+    
+    # define start and end pointer
+    mid = start + (end - start) // 2 
+    print(f'current start pointer = {start}, mid pointer = {mid}, end pointer = {end}')
+
+    # break down the array into smallest sections 
+    Left = input_array[start:mid]
+    Right = input_array[mid:end+1]
+
+    merge_sort(Left)
+
+    merge_sort(Right)
+
+    # after breaking down array into smallest sub array, execute the following:
+
+    # create three different pointers for original and its left and right 
+    # need pointer k because merge sort uses array in place sorting 
+    i = j = k = 0
+
+    while i < len(Left) and j < len(Right):
+
+        # compare size of items in left array and items in right array
+        if Left[i] <= Right[j]:
+            input_array[k] = Left[i]
+            i += 1
+        else Left[i] > Right[j]:
+            input_array[k] = Right[j]
+            j += 1
+
+        k += 1
+
+    # for edge case where the left and right array are not in same length
+    while k < len(input_array):
+        if i < len(Left):
+            input_array[k] = Left[i]
+            i += 1
+        if j < len(Right):
+            input_array[k] = Right[j]
+            j+=1
+        k += 1
+
+    return input_array
 
 
 
 if __name__ == "__main__":
-    nums = [38, 27, 43, 3, 9, 82, 10]
-    merge_sort(nums)
+    nums = [3,5,1,2,7,6]
+    res = merge_sort(nums)
+    print(res)
