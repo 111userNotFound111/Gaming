@@ -72,7 +72,15 @@ def conver_list_to_linked_list(input_list):
         linked_list.insert(int(item))
     return linked_list
 
-
+"""
+    loop through both linked list l1 and l2
+    create a new linkedlist and node to store sum of l1 and l2 nodes
+    if sum of l1 and l2 exceeds 10, use divmod to store exceeds value and remainder
+    
+    if l1 and l2 have different length
+    check which linkelist remain exists and connect the solution linkedlist to the existing linkedlist node
+    
+"""
 
 # 2 Edge Cases : 
 #   1. L1 and L2 have different length 
@@ -81,10 +89,10 @@ def addTwoNumbers( l1 , l2):
     # initialise head to the two linkedlist 
     dummy = ListNode()
     current = dummy
-    carry = 0
+    carry = 0 # value carried to the next node
 
-    while l1 or l2:
-        # initialise val for both l1 and l2
+    while l1 or l2 or carry:
+        # check if l1 and l2 exists
         if l1:
             v1 = l1.val
         else : 
@@ -97,20 +105,22 @@ def addTwoNumbers( l1 , l2):
 
         # starts the new calculations 
         sum = v1 + v2 + carry
-        # reset carry after use 
-        carry = 0
         # for next node carry 
-        if sum >= 10:
-            carry , val = divmod(sum, 10)
-        
-        # store sum value to new digit 
-        l1 = l1.next
-        l2 = l2.next 
-        current.next = ListNode(val)
+        carry , val = divmod(sum, 10)
 
-        # update nodes 
+        # assign value to current node 
+        current.next = ListNode(val)
         current = current.next
-        
+        print(current.val)
+        if l1.next:
+            l1 = l1.next 
+        else: 
+            l1 = None
+            
+        if l2.next:
+            l2 = l2.next 
+        else:
+            l2 = None
 
 
 

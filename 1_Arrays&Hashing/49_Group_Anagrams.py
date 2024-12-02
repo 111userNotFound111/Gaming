@@ -27,9 +27,9 @@ def groupAnagrams(strs):
         # convert list into tuple use as key in dictionary
         # tuple is a hashable struct 
         anagram_dict[tuple(character_list)].append(word)
-
+    # print(anagram_dict)
     for group in anagram_dict.values():
-        #print(group)
+        # sort all word within the same list in ascending order alphabetically
         group=sorted(group)
         output_list.append(group)
     
