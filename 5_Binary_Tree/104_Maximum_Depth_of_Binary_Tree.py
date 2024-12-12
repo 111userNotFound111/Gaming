@@ -19,13 +19,22 @@ The number of nodes in the tree is in the range [0, 104].
 -100 <= Node.val <= 100
 
 """
+                
+
 
 # update the search 
-def maxDepth(root):
-    
-    return
+# DFS find the maxDepth 
+# DFS: go to the leaf node, let leaf node as 0, +1 on return in recursion 
 
+def maxDepth(root):
+    if not root:
+        return 0
+    
+    left_depth = maxDepth(root.left)
+    right_depth = maxDepth(root.right)
+    
+    return max(left_depth, right_depth) + 1
 
 if __name__ == "__main__":
-    test_case = [3,9,20,15,7]
-    
+    test_case = [1,2,3,None,None,4]
+    res = maxDepth()
