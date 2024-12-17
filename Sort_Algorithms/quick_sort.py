@@ -51,6 +51,6 @@ def quick_sort(arr, low=0, high=None):
 
 
 if __name__ == "__main__":
-    test_case = [6,2,4,1,3]
+    test_case = [1,6,3,2,4]
     res = quick_sort(test_case)
     # print(res)

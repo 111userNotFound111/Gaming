@@ -35,17 +35,19 @@ class BinaryTree:
         # iterate condition: both left and right subtree exist, move to the next left
         while True:
             # do not link new val to None node
-            if curNode.val == None:
+            if curNode == None:
                 continue
             # prioritise link with left 
             if curNode.left:
                 nodeList.append(curNode.left)
             else:
+                # link new Node to leaf
                 curNode.left = newNode
                 return
             if curNode.right:
                 nodeList.append(curNode.right)
             else:
+                # link new Node to leaf
                 curNode.right = newNode
                 return
             
@@ -60,11 +62,32 @@ class BinaryTree:
         for num in input_list:
             self.insert(num)
 
+    def _helper_dfs(self, node):
+        if node == None:
+            return 
+        self._helper_dfs(node.left)
+        print(node.val)
+        self._helper_dfs(node.right)
+    
+    def _helper_bfs(self, node):
+        queue = list()
+        queue.append(node)
+        
+        while queue:
+            node = queue.pop(0)
+            print(node.val)
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+    def display(self):
+        self._helper_bfs(self.head)
+        
 if __name__ == "__main__":
     test_list = [3,9,20,None,None,15,7]
     binary_tree = BinaryTree()
     binary_tree.insertList(test_list)
-    print(binary_tree.head.val)
+    binary_tree.display()
             
             
             
